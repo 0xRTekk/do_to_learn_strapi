@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_menu_menu_ct_as",
+  "info": {
+    "displayName": "Menu CTAs",
+    "icon": "expand"
+  },
+  "options": {},
+  "attributes": {
+    "Contact": {
+      "type": "component",
+      "repeatable": false,
+      "component": "menu.cta-button"
+    },
+    "Enroll": {
+      "type": "component",
+      "repeatable": false,
+      "component": "menu.cta-button"
+    }
+  }
+}

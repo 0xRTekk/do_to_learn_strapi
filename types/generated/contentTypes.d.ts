@@ -788,12 +788,13 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiCursusCursus extends Schema.CollectionType {
-  collectionName: 'cursuses';
+export interface ApiChapterChapter extends Schema.CollectionType {
+  collectionName: 'chapters';
   info: {
-    singularName: 'cursus';
-    pluralName: 'cursuses';
-    displayName: 'Cursus';
+    singularName: 'chapter';
+    pluralName: 'chapters';
+    displayName: 'Chapter';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -804,9 +805,7 @@ export interface ApiCursusCursus extends Schema.CollectionType {
     };
   };
   attributes: {
-    Title: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
+    name: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -824,36 +823,46 @@ export interface ApiCursusCursus extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    formation: Attribute.Relation<
+      'api::chapter.chapter',
+      'manyToOne',
+      'api::formation.formation'
+    >;
+    lessons: Attribute.Relation<
+      'api::chapter.chapter',
+      'oneToMany',
+      'api::lesson.lesson'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::cursus.cursus',
+      'api::chapter.chapter',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::cursus.cursus',
+      'api::chapter.chapter',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     localizations: Attribute.Relation<
-      'api::cursus.cursus',
+      'api::chapter.chapter',
       'oneToMany',
-      'api::cursus.cursus'
+      'api::chapter.chapter'
     >;
     locale: Attribute.String;
   };
 }
 
-export interface ApiLandingpageLandingpage extends Schema.SingleType {
-  collectionName: 'landingpages';
+export interface ApiFormationFormation extends Schema.CollectionType {
+  collectionName: 'formations';
   info: {
-    singularName: 'landingpage';
-    pluralName: 'landingpages';
-    displayName: 'Landingpage';
+    singularName: 'formation';
+    pluralName: 'formations';
+    displayName: 'Formation';
   };
   options: {
     draftAndPublish: true;
@@ -864,51 +873,206 @@ export interface ApiLandingpageLandingpage extends Schema.SingleType {
     };
   };
   attributes: {
-    h1: Attribute.String &
+    name: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    hero_img: Attribute.Media &
+    description: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    hero_description: Attribute.Text &
+    image: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    seo_text: Attribute.Blocks &
+    price: Attribute.Integer &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
+    chapters: Attribute.Relation<
+      'api::formation.formation',
+      'oneToMany',
+      'api::chapter.chapter'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::landingpage.landingpage',
+      'api::formation.formation',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::landingpage.landingpage',
+      'api::formation.formation',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     localizations: Attribute.Relation<
-      'api::landingpage.landingpage',
+      'api::formation.formation',
       'oneToMany',
-      'api::landingpage.landingpage'
+      'api::formation.formation'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiFormationsListFormationsList extends Schema.SingleType {
+  collectionName: 'formations_lists';
+  info: {
+    singularName: 'formations-list';
+    pluralName: 'formations-lists';
+    displayName: 'Formations list';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    formationsList: Attribute.DynamicZone<['formations.list']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::formations-list.formations-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::formations-list.formations-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHomeHeroHomeHero extends Schema.SingleType {
+  collectionName: 'home_heroes';
+  info: {
+    singularName: 'home-hero';
+    pluralName: 'home-heroes';
+    displayName: 'Home hero';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heroContent: Attribute.DynamicZone<['hero.hero-header', 'hero.hero-cover']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::home-hero.home-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::home-hero.home-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLessonLesson extends Schema.CollectionType {
+  collectionName: 'lessons';
+  info: {
+    singularName: 'lesson';
+    pluralName: 'lessons';
+    displayName: 'Lesson';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    chapter: Attribute.Relation<
+      'api::lesson.lesson',
+      'manyToOne',
+      'api::chapter.chapter'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::lesson.lesson',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::lesson.lesson',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::lesson.lesson',
+      'oneToMany',
+      'api::lesson.lesson'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiMainMenuMainMenu extends Schema.SingleType {
+  collectionName: 'main_menus';
+  info: {
+    singularName: 'main-menu';
+    pluralName: 'main-menus';
+    displayName: 'Main menu';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    mainMenu: Attribute.DynamicZone<
+      ['menu.menu-dropdown', 'menu.menu-link', 'menu.menu-ct-as']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::main-menu.main-menu',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::main-menu.main-menu',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -930,8 +1094,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::cursus.cursus': ApiCursusCursus;
-      'api::landingpage.landingpage': ApiLandingpageLandingpage;
+      'api::chapter.chapter': ApiChapterChapter;
+      'api::formation.formation': ApiFormationFormation;
+      'api::formations-list.formations-list': ApiFormationsListFormationsList;
+      'api::home-hero.home-hero': ApiHomeHeroHomeHero;
+      'api::lesson.lesson': ApiLessonLesson;
+      'api::main-menu.main-menu': ApiMainMenuMainMenu;
     }
   }
 }

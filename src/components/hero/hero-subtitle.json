@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_hero_hero_subtitles",
+  "info": {
+    "displayName": "Hero subtitle",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "subtitle": {
+      "type": "text"
+    }
+  }
+}

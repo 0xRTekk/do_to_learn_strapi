@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_components_lesson_s_contents",
+  "info": {
+    "displayName": "Lesson's content",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "lesson": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::lesson.lesson"
+    }
+  }
+}

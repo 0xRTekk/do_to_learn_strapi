@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_components_chapter_dropdowns",
+  "info": {
+    "displayName": "Chapter dropdown",
+    "icon": "arrowDown"
+  },
+  "options": {},
+  "attributes": {
+    "chapter": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chapter.chapter"
+    },
+    "lessons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lesson.lesson"
+    }
+  }
+}

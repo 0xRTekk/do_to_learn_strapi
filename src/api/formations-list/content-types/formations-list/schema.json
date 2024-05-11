@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "formations_lists",
+  "info": {
+    "singularName": "formations-list",
+    "pluralName": "formations-lists",
+    "displayName": "Formations list"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "formationsList": {
+      "type": "dynamiczone",
+      "components": [
+        "formations.list"
+      ]
+    }
+  }
+}

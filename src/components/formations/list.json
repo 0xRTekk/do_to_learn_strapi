@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_formations_lists",
+  "info": {
+    "displayName": "List",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "formation": {
+      "displayName": "Formation card",
+      "type": "component",
+      "repeatable": true,
+      "component": "formations.formation-card"
+    }
+  }
+}

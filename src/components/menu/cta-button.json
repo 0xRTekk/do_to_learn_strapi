@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_menu_cta_buttons",
+  "info": {
+    "displayName": "CTA button",
+    "icon": "eye"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "outline-primary",
+        "outline-secondary"
+      ]
+    }
+  }
+}

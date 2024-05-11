@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_menu_menu_dropdowns",
+  "info": {
+    "displayName": "Menu dropdown",
+    "icon": "arrowDown"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "formations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::formation.formation"
+    }
+  }
+}

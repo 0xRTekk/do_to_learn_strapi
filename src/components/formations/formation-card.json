@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_formations_formation_cards",
+  "info": {
+    "displayName": "Formation card",
+    "icon": "expand"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "more": {
+      "type": "component",
+      "repeatable": false,
+      "component": "menu.cta-button"
+    }
+  }
+}

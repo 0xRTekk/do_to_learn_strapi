@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_hero_hero_headers",
+  "info": {
+    "displayName": "Hero header",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hero.hero-title"
+    },
+    "subtitle": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hero.hero-subtitle"
+    }
+  }
+}
